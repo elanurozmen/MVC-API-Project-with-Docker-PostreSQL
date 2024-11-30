@@ -1,0 +1,50 @@
+﻿@model MyMvcApp.Controllers.HomeController.WeatherForecastViewModel
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p style="color: red;">Error message: @Model.ErrorMessage</p>
+}
+else
+{
+    <h1>Hava Durumu Tahminleri</h1>
+
+    <table border="1" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tarih</th>
+                <th>Sıcaklık (°C)</th>
+                <th>Sıcaklık (°F)</th>
+                <th>Özet</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Forecasts != null && Model.Forecasts.Any())
+            {
+                foreach (var forecast in Model.Forecasts)
+                {
+                    <tr>
+                        <td>
+                            @if (DateTime.TryParse(forecast.Date, out var parsedDate))
+                            {
+                                @parsedDate.ToString("yyyy-MM-dd")
+                            }
+                            else
+                            {
+                                <span style="color: red;">Geçersiz tarih</span>
+                            }
+                        </td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@Html.Encode(forecast.Summary ?? "Bilgi Yok")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">Veri bulunamadı.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

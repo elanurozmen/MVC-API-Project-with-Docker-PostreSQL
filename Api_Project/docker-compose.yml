@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: ./Api
+      dockerfile: Dockerfile
+    ports:
+      - "5257:80"  # API'nin dışa açılacağı port
+    depends_on:
+      - pgadmin
+      - mongodb
+      - postgres-db  # Veritabanları ile iletişim
+    networks:
+      - backend-network  # Ağa dahil etme
+  postgres-db:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: weatherdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    networks:
+      - backend-network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - backend-network
+
+volumes:
+  postgres_data:
+  mongodb_data:
+
+networks:
+  backend-network:

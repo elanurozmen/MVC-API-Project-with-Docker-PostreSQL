@@ -1,0 +1,8 @@
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.csproj.AssemblyReference.cache
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.AssemblyInfoInputs.cache
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.AssemblyInfo.cs
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.csproj.CoreCompileInputs.cache
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.RazorAssemblyInfo.cache
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.RazorAssemblyInfo.cs
