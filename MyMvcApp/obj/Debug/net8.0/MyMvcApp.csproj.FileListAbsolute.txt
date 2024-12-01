@@ -6,3 +6,4 @@ C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.csproj.CoreCompileInput
 C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.RazorAssemblyInfo.cache
 C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.RazorAssemblyInfo.cs
+C:\Users\Elanur\codes\MyMvcApp\obj\Debug\net8.0\MyMvcApp.sourcelink.json
