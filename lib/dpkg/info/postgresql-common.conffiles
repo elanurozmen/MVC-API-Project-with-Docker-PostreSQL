@@ -1,0 +1,3 @@
+/etc/init.d/postgresql
+/etc/logrotate.d/postgresql-common
+/etc/postgresql-common/pg_upgradecluster.d/analyze

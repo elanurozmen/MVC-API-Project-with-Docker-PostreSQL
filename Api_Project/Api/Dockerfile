@@ -1,6 +1,7 @@
 # Base image olarak .NET SDK kullanıyoruz
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
+
 # Çalışma dizini oluşturuyoruz
 WORKDIR /app
 
@@ -18,4 +19,4 @@ WORKDIR /app
 COPY --from=build /app/out .
 
 # Uygulamayı çalıştırma komutu
-ENTRYPOINT ["dotnet", "Api.dll"]
+CMD ["dotnet", "Api.dll", "--urls", "http://*:8090"]

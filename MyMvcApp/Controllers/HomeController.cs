@@ -1,91 +1,91 @@
+Home controller:
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System;
-using MyMvcApp.Models;
-using System.Diagnostics;
 
 namespace MyMvcApp.Controllers
 {
     public class HomeController : Controller
     {
-        private PostgresDbService _postgresDbService;
-     private readonly HttpClient _httpClient;
+        // private readonly PostgresDbService _postgresDbService;
+        //  public HomeController(IConfiguration configuration)
+        // {
+        //     // Bağlantı dizelerini al
+        //     var postgresConnection = configuration.GetConnectionString("PostgresConnection");
 
-        public HomeController(PostgresDbService postgresDbService, HttpClient httpClient)
+        //     // Servisleri başlat
+        //     _postgresDbService = new PostgresDbService(postgresConnection);
+
+        // }
+       // Weather Forecast modelini tanımlıyoruz.
+        public class WeatherForecast
         {
-            _postgresDbService = postgresDbService;
-            _httpClient = httpClient;
+            public string Date { get; set; }
+            public int TemperatureC { get; set; }
+            public string Summary { get; set; }
+            public int TemperatureF { get; set; }
         }
 
+      // GET: /Home/Index
         [HttpGet]
         public async Task<IActionResult> Index()
-{
-    string apiUrl = "http://localhost:5257/weatherforecast";
-    var model = new WeatherForecastViewModel();
-
-    
-    try
-    {
-        using var httpClient = new HttpClient();
-        var response = await httpClient.GetAsync(apiUrl);
-
-        if (response.IsSuccessStatusCode)
         {
-            var json = await response.Content.ReadAsStringAsync();
-            var weatherData = JsonSerializer.Deserialize<List<WeatherForecast>>(json, new JsonSerializerOptions
+            // API URL'si
+            string apiUrl = "http://localhost:5257/weatherforecast";
+
+            try
             {
-                PropertyNameCaseInsensitive = true
-            });
-            
-            if (weatherData != null)
-            {
-                foreach (var weather in weatherData)
+                // HttpClient ile API isteği gönder
+                using (var httpClient = new HttpClient())
                 {
-                    if (DateTime.TryParse(weather.Date, out var parsedDate))
+                    var response = await httpClient.GetAsync(apiUrl);
+
+                    // Yanıtı kontrol et
+                    if (response.IsSuccessStatusCode)
                     {
-                        await _postgresDbService.SaveWeatherDataAsync(
-                            parsedDate.ToString("yyyy-MM-dd"), // Formatlanmış tarih
-                            weather.TemperatureC, 
-                            weather.TemperatureF, 
-                            weather.Summary ?? "N/A"
-                        );
+                        // JSON yanıtını string olarak al
+                        var json = await response.Content.ReadAsStringAsync();
+
+                        // JSON'u WeatherForecast listesine dönüştür
+                        var weatherData = JsonSerializer.Deserialize<List<WeatherForecast>>(json, new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true // JSON'daki büyük/küçük harf farkını göz ardı et
+                        });
+
+                        // if (weatherData != null)
+                        // {
+                        //     foreach (var weather in weatherData)
+                        //     {
+                        //         // İki veritabanına aynı anda yaz
+                        //         await _postgresDbService.SaveWeatherDataAsync(weather.Date, weather.TemperatureC, weather.Summary);
+                                
+                        //     }
+                        // }
+                        //Veriyi View'e gönder
+                        return View(weatherData);
                     }
                     else
-                    {
-                        model.ErrorMessage = "Geçersiz tarih formatı: " + weather.Date;
+                    { 
+                        // Başarısız yanıt durumu için hata mesajı
+                        ViewBag.ErrorMessage = $"Servis yanıt vermiyor. Durum Kodu: {response.StatusCode}";
+                        return View("Error");
                     }
                 }
-
-                model.Forecasts = weatherData;
-                return View(model);
             }
-            else
+            catch (HttpRequestException ex)
             {
-                model.ErrorMessage = "Veri bulunamadı.";
-                return View(model);
+                // HTTP isteği sırasında oluşan hata
+                ViewBag.ErrorMessage = $"API çağrısı sırasında bir hata oluştu: {ex.Message}";
+                return View("Error");
+            }
+            catch (Exception ex)
+            {
+                // Genel hata durumu
+                ViewBag.ErrorMessage = $"Bilinmeyen bir hata oluştu: {ex.Message}";
+                return View("Error");
             }
         }
-        else
-        {
-            // ErrorViewModel ile hata mesajı gönderiliyor
-            return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, ErrorMessage = $"Servis yanıt vermiyor. Durum Kodu: {response.StatusCode}" });
-        }
-    }
-    catch (HttpRequestException ex)
-    {
-        // Hata mesajını ErrorViewModel'e ekleyip görünümü gönderiyoruz
-        return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, ErrorMessage = $"API çağrısı sırasında bir hata oluştu: {ex.Message}" });
-    }
-    catch (Exception ex)
-    {
-        // Hata mesajını ErrorViewModel'e ekleyip görünümü gönderiyoruz
-        return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, ErrorMessage = $"Bilinmeyen bir hata oluştu: {ex.Message}" });
     }
 }
-
-    }
-}
-

@@ -1,0 +1,10 @@
+baa9184a66544682d3783e02b984d54f  usr/share/doc/postgresql-client-common/changelog.gz
+9ab62f992dcf8c5345c1804f0bc0b540  usr/share/doc/postgresql-client-common/copyright
+50a862ecd39a75a9c92ea0e0c23c1e15  usr/share/lintian/overrides/postgresql-client-common
+8b44154242b90abd00be4f34e96e1500  usr/share/man/man1/pg_wrapper.1.gz
+883c0b1985d77d7553a9ecf0824b9895  usr/share/man/man5/postgresqlrc.5.gz
+da210a6be18dd472220a7e5dc50eb4f5  usr/share/man/man5/user_clusters.5.gz
+dd2ffed14063ec2635cf88ed4d9452c6  usr/share/perl5/PgCommon.pm
+8111b0356cee474a253d3de80ff14256  usr/share/postgresql-common/maintscripts-functions
+1c5b49f8b394c7f9e2bd7e43ce0cde33  usr/share/postgresql-common/pg_wrapper
+5c5d2454f676663b96a1308893ae7cdd  usr/share/postgresql-common/supported-versions
