@@ -9,7 +9,6 @@ services:
       - /path/to/your/jenkins_home:/var/jenkins_home
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
-
   api:
     build:
       context: ./Api_Project
@@ -20,6 +19,7 @@ services:
       - pgadmin
       - mongodb
       - postgres-db  # Veritabanları ile iletişim
+
   postgres-db:
     image: postgres:latest
     container_name: postgres_container
