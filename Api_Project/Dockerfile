@@ -6,7 +6,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Proje dosyasını kopyalayıp bağımlılıkları yüklüyoruz
-COPY ./Api.csproj .
+COPY .Api_Project/Api.csproj .
 RUN dotnet restore
 
 # Kodları kopyalayıp uygulamayı derliyoruz
