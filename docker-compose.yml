@@ -11,8 +11,8 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
   api:
     build:
-      context: ./Api_Project
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Api_Project/Dockerfile
     ports:
       - "8090:8090"  # API'nin dışa açılacağı port
     depends_on:
