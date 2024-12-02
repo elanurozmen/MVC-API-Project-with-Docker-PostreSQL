@@ -11,14 +11,15 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
   api:
     build:
-      context: ./Api
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Api_Project/Dockerfile
     ports:
       - "8090:8090"  # API'nin dışa açılacağı port
     depends_on:
       - pgadmin
       - mongodb
-      - postgres-db  # Veritabanları ile iletişim # Ağa dahil etme
+      - postgres-db  # Veritabanları ile iletişim
+
   postgres-db:
     image: postgres:latest
     container_name: postgres_container
