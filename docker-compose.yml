@@ -18,7 +18,8 @@ services:
     depends_on:
       - pgadmin
       - mongodb
-      - postgres-db  # Veritabanları ile iletişim # Ağa dahil etme
+      - postgres-db  # Veritabanları ile iletişim
+
   postgres-db:
     image: postgres:latest
     container_name: postgres_container
