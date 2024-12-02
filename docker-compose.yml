@@ -1,4 +1,15 @@
 services:
+  jenkins:
+    image: muazmemis/jenkins-docker:latest
+    container_name: c_jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /path/to/your/jenkins_home:/var/jenkins_home
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+
   api:
     build:
       context: ./Api
@@ -8,7 +19,7 @@ services:
     depends_on:
       - pgadmin
       - mongodb
-      - postgres-db  # Veritabanları ile iletişim # Ağa dahil etme
+      - postgres-db  # Veritabanları ile iletişim
   postgres-db:
     image: postgres:latest
     container_name: postgres_container
