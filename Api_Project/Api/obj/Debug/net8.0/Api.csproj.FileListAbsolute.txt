@@ -278,3 +278,9 @@ C:\Users\Elanur\codes\Api_Project\Api\obj\Debug\net8.0\refint\Api.dll
 C:\Users\Elanur\codes\Api_Project\Api\obj\Debug\net8.0\Api.pdb
 C:\Users\Elanur\codes\Api_Project\Api\obj\Debug\net8.0\Api.genruntimeconfig.cache
 C:\Users\Elanur\codes\Api_Project\Api\obj\Debug\net8.0\ref\Api.dll
+C:\Users\Elanur\codes\Api_Project\Api\bin\Debug\net8.0\DnsClient.dll
+C:\Users\Elanur\codes\Api_Project\Api\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\Elanur\codes\Api_Project\Api\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\Elanur\codes\Api_Project\Api\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\Elanur\codes\Api_Project\Api\bin\Debug\net8.0\Snappier.dll
+C:\Users\Elanur\codes\Api_Project\Api\bin\Debug\net8.0\ZstdSharp.dll

@@ -9,7 +9,7 @@ namespace Api.Controller
     public class CheckController : ControllerBase
     {
         private readonly CheckDbContext _context;
-
+        
         public CheckController(CheckDbContext context)
         {
             _context = context;
