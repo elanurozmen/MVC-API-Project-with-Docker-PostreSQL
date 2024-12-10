@@ -8,7 +8,7 @@ namespace Api.Controllers;
 [Route("api/[controller]")]
 public class MongoController : ControllerBase
 {
-    private readonly CheckService _checksService;
+    privat readonly CheckService _checksService;
 
     public MongoController(CheckService checksService) =>
         _checksService = checksService;
