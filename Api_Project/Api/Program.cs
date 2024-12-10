@@ -21,8 +21,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-    app.UseSwagge();
-    app.UseSwaggerU();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
